@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\task;    // 追加
+use App\Task;    // 追加
 
 class tasksController extends Controller
 {
@@ -18,7 +18,7 @@ class tasksController extends Controller
      */
     public function index()
     {
-        $tasks = task::all();
+        $tasks = Task::all();
 
         return view('tasks.index', [
             'tasks' => $tasks
@@ -33,7 +33,7 @@ class tasksController extends Controller
      */
     public function create()
     {
-        $task = new task;
+        $task = new Task;
 
         return view('tasks.create', [
             'task' => $task,
@@ -48,7 +48,7 @@ class tasksController extends Controller
      */
     public function store(Request $request)
     {
-        $task = new task;
+        $task = new Task;
         $task->content = $request->content;
         $task->save();
 
@@ -78,7 +78,7 @@ class tasksController extends Controller
      */
     public function edit($id)
     {
-        $task = task::find($id);
+        $task = Task::find($id);
 
         return view('tasks.edit', [
             'task' => $task,
@@ -94,7 +94,7 @@ class tasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task = task::find($id);
+        $task = Task::find($id);
         $task->content = $request->content;
         $task->save();
 
@@ -109,7 +109,7 @@ class tasksController extends Controller
      */
     public function destroy($id)
     {
-        $task = task::find($id);
+        $task = Task::find($id);
         $task->delete();
 
         return redirect('/');
