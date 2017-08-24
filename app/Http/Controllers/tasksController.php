@@ -49,10 +49,12 @@ class tasksController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'content' => 'required|max:255',
+    'status' => 'required|max:10',   // 追加
+    'content' => 'required|max:255',
         ]);
 
         $task = new Task;
+        $task->status = $request->status;    // 追加
         $task->content = $request->content;
         $task->save();
 
@@ -100,10 +102,12 @@ class tasksController extends Controller
     {
     
         $this->validate($request, [
+            'status' => 'required|max:10',   // 追加
             'content' => 'required|max:255',
         ]);
         
         $task = Task::find($id);
+        $task->status = $request->status;    // 追加
         $task->content = $request->content;
         $task->save();
 
@@ -124,3 +128,4 @@ class tasksController extends Controller
         return redirect('/');
     }
 }
+　
