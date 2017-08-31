@@ -128,4 +128,3 @@ class tasksController extends Controller
         return redirect('/');
     }
 }
-　
